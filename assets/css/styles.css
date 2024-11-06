@@ -1,0 +1,339 @@
+#renewai-ig1-metabox .spinner {
+    float: none;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin: 0 0 0 5px;
+    vertical-align: middle;
+    visibility: hidden;
+}
+
+#renewai-ig1-metabox button {
+    margin-right: 10px;
+}
+
+#renewai-ig1-char-count {
+    display: block;
+    text-align: right;
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 2px;
+    margin-bottom: 5px;
+}
+
+#renewai-ig1-prompt {
+    width: 100%;
+    min-height: 80px;
+    margin-bottom: 5px;
+}
+
+#renewai-ig1-metabox .button .spinner {
+    display: inline-block;
+}
+
+#renewai_ig1_result img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+#renewai_ig1_result .error {
+    color: #dc3232;
+}
+
+.renewai-ig1-settings-form textarea.large-text {
+  width: 99%;
+}
+.renewai-ig1-settings-form .regular-text {
+  width: 25em;
+}
+
+/* Admin styles */
+.renewai-ig1-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.renewai-ig1-wrap h1 {
+  margin-bottom: 20px;
+}
+
+.renewai-ig1-title {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.renewai-ig1-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.renewai-ig1-header h3  {
+	margin-top: 1em !important;  
+}
+
+.renewai-ig1-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.renewai-ig1-nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.renewai-ig1-nav a:hover,
+.renewai-ig1-nav a.active {
+  background-color: #f0f0f0;
+}
+
+.renewai-ig1-settings-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.renewai-ig1-settings-form .form-table th {
+  width: 200px;
+}
+
+.renewai-ig1-settings-form .form-table td {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.renewai-ig1-wrap {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Responsive design */
+@media screen and (max-width: 782px) {
+  .renewai-ig1-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .renewai-ig1-nav {
+    margin-top: 10px;
+  }
+}
+
+.renewai-ig1-settings-section {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.renewai-ig1-settings-section h2 {
+  margin-top: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.renewai-ig1-settings-section ol,
+.renewai-ig1-settings-section ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.renewai-ig1-settings-section ol {
+  list-style-type: decimal;
+}
+
+.renewai-ig1-settings-section li {
+  margin-bottom: 5px;
+}
+
+.renewai-ig1-settings-section .description.bottom-label {
+  font-size: 12px;
+  margin: 10px 0 10px 0;
+}
+
+.renewai-ig1-settings-section p.renewai-ig1-next-scan-time {
+  font-size: 11px;
+  font-style: italic;
+}
+
+.renewai-ig1-api-settings-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.renewai-ig1-api-setting {
+  display: flex;
+  flex-direction: column;
+}
+
+.renewai-ig1-api-setting label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.renewai-ig1-api-setting input[type="password"] {
+  width: 100%;
+  max-width: 400px;
+}
+
+#renewai-ig1-generate-prompt,
+#renewai-ig1-generate-image {
+    margin-bottom: 10px;
+}
+
+#renewai-ig1-metabox .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+#renewai-ig1-generate-prompt,
+#renewai-ig1-generate-image {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 5px;
+}
+
+#renewai-ig1-generate-image {
+    margin-bottom: 0;
+}
+
+#renewai-ig1-status-message {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e7f5ea;
+    border-left: 4px solid #46b450;
+    display: none;
+}
+
+#renewai-ig1-size {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.wrap h2 {
+    margin-top: 2em;
+}
+
+.wrap h3 {
+    margin-top: 1.5em;
+}
+
+.wrap ol, .wrap ul {
+    margin-left: 2em;
+}
+
+.wrap li {
+    margin-bottom: 0.5em;
+}
+.renewai-ig1-advanced-settings .form-table th {
+    width: 250px;
+}
+
+.renewai-ig1-advanced-settings .form-table input[type="range"] {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Add to existing styles */
+
+.renewai-ig1-newsletter-signup {
+  margin: 2em 0 !important;
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  box-shadow: 0 1px 1px rgba(0,0,0,.04);
+  padding: 1.5em !important;
+}
+
+.renewai-ig1-newsletter-signup h3 {
+  margin: 0 0 1em 0;
+  padding: 0;
+  font-size: 1.3em;
+  color: #1d2327;
+  font-weight: 600;
+}
+
+.renewai-ig1-newsletter-signup p {
+  margin: 1em 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #50575e;
+}
+
+.renewai-ig1-checkbox-label {
+  display: block;
+  margin: 1.5em 0 0.5em;
+  font-size: 14px;
+  color: #1d2327;
+}
+
+.renewai-ig1-checkbox-label input[type="checkbox"] {
+  margin: 0 8px 0 0;
+}
+
+.renewai-ig1-api-keys-form {
+  max-width: 800px;
+  margin-top: 20px;
+}
+
+.renewai-ig1-api-keys-form .form-table {
+  margin-top: 20px;
+}
+
+.renewai-ig1-info {
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.renewai-ig1-info p {
+    margin: 5px 0;
+    font-size: 13px;
+}
+
+.renewai-ig1-info strong {
+    color: #2271b1;
+}
+
+.renewai-ig1-prompt-section {
+  margin-bottom: 15px;
+}
+
+.renewai-ig1-prompt-section textarea {
+  margin-bottom: 5px;
+}
+
+.renewai-ig1-prompt-section #renewai-ig1-char-count {
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #666;
+}
+
+.renewai-ig1-image-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.renewai-ig1-image-controls label {
+  margin-bottom: 5px;
+}
+
+.renewai-ig1-image-controls select {
+  margin-bottom: 10px;
+}
