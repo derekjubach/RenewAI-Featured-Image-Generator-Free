@@ -3,7 +3,7 @@ Contributors: perpetuaiconsulting, freemius
 Tags: featured image, ai, openai, flux, image generation, internationalization, translation-ready
 Requires at least: 5.0
 Tested up to: 6.7
-Stable tag: 2.0
+Stable tag: 2.0.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -103,6 +103,9 @@ PerpetuAI Consulting is not responsible for any misuse of the AI services or any
 
 == Changelog ==
 
+= 2.0.1 =
+* Fix plugin initialization error
+
 = 2.0 =
 * Replaced FAL API integration with Flux API integration
 * Updated OpenAI model options
@@ -117,8 +120,5 @@ PerpetuAI Consulting is not responsible for any misuse of the AI services or any
 
 == Upgrade Notice ==
 
-= 2.0 =
-* Replaced FAL API integration with Flux API integration
-* Updated OpenAI model options
-* Metabox UI improvements
-* Added more detailed error logging
+= 2.0.1 =
+* Fix plugin initialization error

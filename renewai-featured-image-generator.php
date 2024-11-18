@@ -3,7 +3,7 @@
 /**
  * Plugin Name: RenewAI Featured Image Generator
  * Description: Generates featured images for posts using OpenAI and Flux API's.
- * Version: 2.0
+ * Version: 2.0.1
  * Text Domain: renewai-featured-image-generator
  * Author: Derek Jubach
  * Author URI:  https://github.com/derekjubach/RenewAI-Featured-Image-Creator-Free
@@ -138,7 +138,10 @@ if (!function_exists('RenewAI\\FeaturedImageGenerator\\renewai_ig1')) {
     {
       // First load all required files
       require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/utils/encryption.php';
+      require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/admin/settings.php';
       require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/admin/api-keys.php';
+      require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/api/handler.php';
+      require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/admin/metabox.php';
       require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/admin/help.php';
       require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/helpers.php';
       require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/admin/advanced-settings.php';
