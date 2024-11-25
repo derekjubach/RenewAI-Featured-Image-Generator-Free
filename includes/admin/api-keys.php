@@ -141,44 +141,6 @@ class APIKeys {
     }
 
     /**
-     * Render the Flux API key field.
-     * Only available in premium version.
-     */
-    public function render_flux_api_key_field() : void {
-        return;
-        $value = $this->get_api_key( 'flux' );
-        $display_value = ( !empty( $value ) ? str_repeat( '•', 32 ) : '' );
-        ?>
-    <input type="password"
-      id="renewai_ig1_flux_api_key"
-      name="renewai_ig1_flux_api_key"
-      value="<?php 
-        echo esc_attr( $display_value );
-        ?>"
-      class="regular-text">
-    <button type="button" class="button" onclick="toggleApiKeyField('flux')">
-      <?php 
-        esc_html_e( 'Change API Key', 'renewai-featured-image-generator' );
-        ?>
-    </button>
-    <p class="description bottom-label">
-      <?php 
-        printf( 
-            /* translators: %s: Flux pricing URL */
-            esc_html__( 'Note: Before using Flux models, please review the API pricing details to understand the associated usage costs. %s', 'renewai-featured-image-generator' ),
-            '<br><a href="' . esc_url( 'https://docs.bfl.ml/pricing/' ) . '" target="_blank">' . esc_html__( 'Learn more', 'renewai-featured-image-generator' ) . '</a>. '
-         );
-        printf( 
-            /* translators: %s: Flux account URL */
-            esc_html__( 'Need a Flux API key? %s', 'renewai-featured-image-generator' ),
-            '<a href="' . esc_url( 'https://docs.bfl.ml/quick_start/create_account/' ) . '" target="_blank">' . esc_html__( 'Create an account', 'renewai-featured-image-generator' ) . '</a>.'
-         );
-        ?>
-    </p>
-    <?php 
-    }
-
-    /**
      * Display admin notices for settings updates.
      */
     public function admin_notices() : void {
