@@ -293,17 +293,7 @@ jQuery(document).ready(function ($) {
 	// Call initApiKeyFields when the document is ready
 	initApiKeyFields();
 
-	// Function to handle Flux model selection change
-	function handleFluxModelChange() {
-		var selectedModel = $('#renewai_ig1_fal_model').val();
-		var modelNotes = {
-			flux_pro_1_1: 'Latest version of Flux Pro with improved quality and speed.',
-			flux_pro: 'Stable version of Flux Pro for production use.',
-			flux_dev:
-				'Development version of Flux - suitable for testing and development.',
-		};
-		$('#renewai_ig1_fal_model_note').text(modelNotes[selectedModel]);
-	}
+	
 
 	function updateModelInfo() {
 		const $openaiModel = $('#renewai_ig1_openai_model');
@@ -333,22 +323,13 @@ jQuery(document).ready(function ($) {
 	function toggleModelFields() {
 		var selectedGenerator = $('#renewai_ig1_image_generator').val();
 
-		// Show FAL model field only when Flux is selected
-		var $falModelRow = $('#renewai_ig1_fal_model').closest('tr');
-		if (selectedGenerator === 'flux') {
-			$falModelRow.show();
-		} else {
-			$falModelRow.hide();
-		}
+		
 	}
 
 	$('#renewai_ig1_image_generator').on('change', toggleModelFields);
 
-	// Initialize Flux model change handler
-	$('#renewai_ig1_fal_model').on('change', handleFluxModelChange);
+	
 
-	// Call the handler once on page load to set the initial note
-	handleFluxModelChange();
 	//Update the model info
 	updateModelInfo();
 	//Toggle model fields

@@ -2,7 +2,6 @@
 
 namespace RenewAI\FeaturedImageGenerator\Admin;
 
-use RenewAI\FeaturedImageGenerator\API\Handler as APIHandler;
 use WP_Error;
 use RenewAI\FeaturedImageGenerator\API\Handler;
 use function RenewAI\FeaturedImageGenerator\renewai_ig1_log;
@@ -56,27 +55,10 @@ class MetaBox {
         error_log( 'Current generator in metabox: ' . $current_generator );
         // Get model display name
         $model_display = 'DALL-E 3';
-        if ( $current_generator === 'flux' ) {
-            $current_model = get_option( 'renewai_ig1_fal_model', 'flux_dev' );
-            $model_names = [
-                'flux_pro_1_1' => 'Flux Pro 1.1',
-                'flux_pro'     => 'Flux Pro',
-                'flux_dev'     => 'Flux Dev',
-            ];
-            $model_display = $model_names[$current_model] ?? 'Flux Dev';
-        }
         // Get prompt model display name for premium users
         $prompt_model_display = '';
         // Define sizes based on generator
         $sizes = $this->get_sizes_for_generator( $current_generator );
-        // Get available styles for premium users
-        $styles = [
-            'natural'   => __( 'Natural', 'renewai-featured-image-generator' ),
-            'artistic'  => __( 'Artistic', 'renewai-featured-image-generator' ),
-            'realistic' => __( 'Realistic', 'renewai-featured-image-generator' ),
-            'abstract'  => __( 'Abstract', 'renewai-featured-image-generator' ),
-        ];
-        $current_style = get_option( 'renewai_ig1_image_style', 'natural' );
         ?>
     <div id="renewai-ig1-metabox" data-generator="<?php 
         echo esc_attr( $current_generator );
@@ -190,8 +172,8 @@ class MetaBox {
             return;
         }
         $post_id = intval( wp_unslash( $_POST['post_id'] ?? 0 ) );
-        $prompt = wp_unslash( sanitize_textarea_field( $_POST['prompt'] ?? '' ) );
-        $size = wp_unslash( sanitize_text_field( $_POST['size'] ?? 'square_hd' ) );
+        $prompt = sanitize_textarea_field( wp_unslash( $_POST['prompt'] ?? '' ) );
+        $size = sanitize_text_field( wp_unslash( $_POST['size'] ?? 'square_hd' ) );
         if ( !$post_id || !$prompt ) {
             wp_send_json_error( esc_html__( 'Missing required parameters.', 'renewai-featured-image-generator' ) );
             return;

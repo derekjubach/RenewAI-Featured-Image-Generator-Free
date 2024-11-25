@@ -3,7 +3,7 @@
 /**
  * Plugin Name: RenewAI Featured Image Generator
  * Description: Generates featured images for posts using OpenAI and Flux API's.
- * Version: 2.0.1
+ * Version: 2.0.2
  * Text Domain: renewai-featured-image-generator
  * Author: Derek Jubach
  * Author URI:  https://github.com/derekjubach/RenewAI-Featured-Image-Creator-Free
@@ -39,7 +39,7 @@ if (!function_exists('RenewAI\\FeaturedImageGenerator\\renewai_ig1')) {
         'type'           => 'plugin',
         'public_key'     => 'pk_e9b8e80a22e12b8863e93c15c6894',
         'is_premium'     => false,
-        'premium_suffix' => 'The premium version of the RenewAI Featured Image Creator.',
+        'premium_suffix' => 'Premium',
         'has_addons'     => false,
         'has_paid_plans' => true,
         'menu'           => array(
@@ -143,16 +143,15 @@ if (!function_exists('RenewAI\\FeaturedImageGenerator\\renewai_ig1')) {
       require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/api/handler.php';
       require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/admin/metabox.php';
       require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/admin/help.php';
-      require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/helpers.php';
-      require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/admin/advanced-settings.php';
       require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/image-generators.php';
+      require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/helpers.php';
       add_action('plugins_loaded', [$this, 'load_textdomain']);
       add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_scripts']);
       // Initialize Settings first to set up menu structure
-      Admin\Settings::get_instance();
+      \RenewAI\FeaturedImageGenerator\Admin\Settings::get_instance();
       // Then initialize APIKeys to add to existing menu
-      Admin\APIKeys::get_instance();
-      new Admin\MetaBox();
+      \RenewAI\FeaturedImageGenerator\Admin\APIKeys::get_instance();
+      new \RenewAI\FeaturedImageGenerator\Admin\MetaBox();
       add_filter('upload_mimes', function ($mimes) {
         // Ensure PNG and JPEG are allowed
         $mimes['jpg|jpeg|jpe'] = 'image/jpeg';
@@ -343,14 +342,6 @@ if (!function_exists('RenewAI\\FeaturedImageGenerator\\renewai_ig1')) {
   add_action('wp_ajax_renewai_ig1_log', 'RenewAI\\FeaturedImageGenerator\\renewai_ig1_ajax_log');
   add_action('wp_ajax_renewai_ig1_view_log', 'RenewAI\\FeaturedImageGenerator\\renewai_ig1_view_log');
   add_action('wp_ajax_renewai_ig1_delete_log', 'RenewAI\\FeaturedImageGenerator\\renewai_ig1_delete_log');
-  // Pages
-  require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/admin/help.php';
-  //Helpers
-  require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/helpers.php';
-  //Advanced settings
-  require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/admin/advanced-settings.php';
-  //Image generators
-  require_once RENEWAI_IG1_PLUGIN_DIR . 'includes/image-generators.php';
   // Initialize the plugin.
   RenewAI_Featured_Image_Generator::get_instance();
 }

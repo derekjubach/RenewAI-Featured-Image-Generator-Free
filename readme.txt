@@ -3,7 +3,7 @@ Contributors: djubach, fullscope, freemius
 Tags: featured image, ai, openai, flux, image generation, internationalization, translation-ready
 Requires at least: 5.0
 Tested up to: 6.7
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -36,7 +36,7 @@ RenewAI Featured Image Generator is a powerful WordPress plugin that leverages A
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/renewai-featured-image-generator` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Use the Settings -> RenewAI Image screen to configure the plugin and add your API keys.
 4. Visit the Help page under RenewAI Image for detailed setup instructions and troubleshooting tips.
@@ -82,7 +82,7 @@ Yes, the plugin is compatible with WordPress language switchers.
 1. Settings page
 2. Featured image generation in action
 
-== External Services ==
+== Terms of Service ==
 
 This plugin uses third-party services to generate prompts and images. By using this plugin, you agree to the terms of service and privacy policies of these services:
 
@@ -99,9 +99,12 @@ This plugin uses third-party services to generate prompts and images. By using t
 
 Please review these terms and policies carefully before using the RenewAI Featured Image Generator plugin. Your use of this plugin is subject to your acceptance of these third-party terms and policies, as well as your compliance with all applicable laws and regulations regarding AI-generated content.
 
-FullScope is not responsible for any misuse of the AI services or any content generated through this plugin. Users are solely responsible for ensuring that their use of AI-generated images complies with copyright laws and other relevant regulations.
+PerpetuAI Consulting is not responsible for any misuse of the AI services or any content generated through this plugin. Users are solely responsible for ensuring that their use of AI-generated images complies with copyright laws and other relevant regulations.
 
 == Changelog ==
+
+= 2.0.2 =
+* WordPress.org compliance updates
 
 = 2.0.1 =
 * Fix plugin initialization error
@@ -120,5 +123,5 @@ FullScope is not responsible for any misuse of the AI services or any content ge
 
 == Upgrade Notice ==
 
-= 2.0.1 =
-* Fix plugin initialization error
+= 2.0.2 =
+* WordPress.org compliance updates
