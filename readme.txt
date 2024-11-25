@@ -1,5 +1,5 @@
 === RenewAI Featured Image Generator ===
-Contributors: perpetuaiconsulting, freemius
+Contributors: djubach, fullscope, freemius
 Tags: featured image, ai, openai, flux, image generation, internationalization, translation-ready
 Requires at least: 5.0
 Tested up to: 6.7
@@ -82,7 +82,7 @@ Yes, the plugin is compatible with WordPress language switchers.
 1. Settings page
 2. Featured image generation in action
 
-== Terms of Service ==
+== External Services ==
 
 This plugin uses third-party services to generate prompts and images. By using this plugin, you agree to the terms of service and privacy policies of these services:
 
@@ -99,7 +99,7 @@ This plugin uses third-party services to generate prompts and images. By using t
 
 Please review these terms and policies carefully before using the RenewAI Featured Image Generator plugin. Your use of this plugin is subject to your acceptance of these third-party terms and policies, as well as your compliance with all applicable laws and regulations regarding AI-generated content.
 
-PerpetuAI Consulting is not responsible for any misuse of the AI services or any content generated through this plugin. Users are solely responsible for ensuring that their use of AI-generated images complies with copyright laws and other relevant regulations.
+FullScope is not responsible for any misuse of the AI services or any content generated through this plugin. Users are solely responsible for ensuring that their use of AI-generated images complies with copyright laws and other relevant regulations.
 
 == Changelog ==
 

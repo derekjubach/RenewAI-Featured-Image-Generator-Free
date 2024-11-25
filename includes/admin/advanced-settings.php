@@ -49,6 +49,7 @@ class AdvancedSettings
     register_setting('renewai_ig1_advanced_settings', 'renewai_ig1_image_style', [
       'type' => 'string',
       'default' => 'natural',
+      'sanitize_callback' => [__CLASS__, 'sanitize_image_style'],
     ]);
 
     // Add settings section
@@ -184,5 +185,27 @@ class AdvancedSettings
       return 2;
     }
     return $value;
+  }
+
+  /**
+   * Sanitize the image style setting.
+   * 
+   * @param string $style The style value to sanitize
+   * @return string Sanitized style value
+   */
+  public static function sanitize_image_style(string $style): string
+  {
+    $allowed_styles = ['natural', 'cartoon', 'abstract', 'realistic'];
+
+    if (!in_array($style, $allowed_styles, true)) {
+      add_settings_error(
+        'renewai_ig1_advanced_settings',
+        'invalid_image_style',
+        esc_html__('Invalid image style selected.', 'renewai-featured-image-generator')
+      );
+      return 'natural'; // Return default if invalid
+    }
+
+    return $style;
   }
 }
