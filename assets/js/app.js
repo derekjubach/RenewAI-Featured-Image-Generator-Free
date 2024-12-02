@@ -101,7 +101,7 @@ jQuery(document).ready(function ($) {
 				type: 'POST',
 				data: {
 					action: 'renewai_ig1_generate_prompt',
-					nonce: renewai_ig1_ajax.nonce,
+					nonce: renewai_ig1_ajax.generate_prompt_nonce,
 					post_id: postId,
 					request_id: 'req_' + Date.now(),
 				},
@@ -146,7 +146,7 @@ jQuery(document).ready(function ($) {
 				type: 'POST',
 				data: {
 					action: 'renewai_ig1_generate_image',
-					nonce: renewai_ig1_ajax.nonce,
+					nonce: renewai_ig1_ajax.generate_image_nonce,
 					post_id: postId,
 					size: $('#renewai-ig1-size').val(),
 					prompt: $promptTextarea.val(),
@@ -218,7 +218,7 @@ jQuery(document).ready(function ($) {
 				type: 'POST',
 				data: {
 					action: 'renewai_ig1_delete_log',
-					nonce: renewai_ig1_ajax.nonce,
+					nonce: renewai_ig1_ajax.delete_log_nonce,
 				},
 				success: function (response) {
 					if (response.success) {
@@ -241,20 +241,6 @@ jQuery(document).ready(function ($) {
 			});
 		}
 	});
-
-	// Common functionality (if any)
-	function logToServer(message, level = 'info') {
-		$.ajax({
-			url: renewai_ig1_ajax.ajax_url,
-			type: 'POST',
-			data: {
-				action: 'renewai_ig1_log',
-				nonce: renewai_ig1_ajax.nonce,
-				message: message,
-				level: level,
-			},
-		});
-	}
 
 	// Function to toggle API key field
 	window.toggleApiKeyField = function (provider) {

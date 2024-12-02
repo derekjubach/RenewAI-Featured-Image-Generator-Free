@@ -48,7 +48,9 @@ class MetaBox {
      * @param array $meta The meta box arguments
      */
     public function render_meta_box( $post, $meta ) : void {
-        wp_nonce_field( 'renewai_ig1_generate_image', 'renewai_ig1_nonce' );
+        if ( !current_user_can( 'edit_posts' ) ) {
+            return;
+        }
         // Get current settings and ensure we have a valid generator
         $current_generator = $meta['args']['generator'] ?? 'flux';
         // Debug output
@@ -133,7 +135,13 @@ class MetaBox {
      * Handle AJAX request to generate image prompt.
      */
     public function ajax_generate_prompt() : void {
-        check_ajax_referer( 'renewai_ig1_generate_image', 'nonce' );
+        // Verify nonce
+        if ( !isset( $_POST['nonce'] ) || !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'renewai_ig1_generate_prompt' ) ) {
+            wp_send_json_error( [
+                'message' => esc_html__( 'Security check failed.', 'renewai-featured-image-generator' ),
+            ] );
+            return;
+        }
         if ( !current_user_can( 'edit_posts' ) ) {
             wp_send_json_error( esc_html__( 'You do not have permission to perform this action.', 'renewai-featured-image-generator' ) );
             return;
@@ -166,7 +174,13 @@ class MetaBox {
      * Handle AJAX request to generate image.
      */
     public function ajax_generate_image() : void {
-        check_ajax_referer( 'renewai_ig1_generate_image', 'nonce' );
+        // Verify nonce
+        if ( !isset( $_POST['nonce'] ) || !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'renewai_ig1_generate_image' ) ) {
+            wp_send_json_error( [
+                'message' => esc_html__( 'Security check failed.', 'renewai-featured-image-generator' ),
+            ] );
+            return;
+        }
         if ( !current_user_can( 'edit_posts' ) ) {
             wp_send_json_error( esc_html__( 'You do not have permission to perform this action.', 'renewai-featured-image-generator' ) );
             return;

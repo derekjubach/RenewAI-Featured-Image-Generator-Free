@@ -24,7 +24,7 @@ define('RENEWAI_IG1_VERSION', '1.0.2');
 define('RENEWAI_IG1_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('RENEWAI_IG1_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('RENEWAI_IG1_LOG_FILE', RENEWAI_IG1_PLUGIN_DIR . 'renewai-ig1-debug.log');
-define('RENEWAI_IG1_NEWSLETTER_ADDR', 'success@perpetuaiconsult.com');
+define('RENEWAI_IG1_NEWSLETTER_ADDR', 'hello@fullsco.pe');
 if (!function_exists('RenewAI\\FeaturedImageGenerator\\renewai_ig1')) {
   // Create a helper function for easy SDK access.
   function renewai_ig1()
@@ -222,11 +222,13 @@ if (!function_exists('RenewAI\\FeaturedImageGenerator\\renewai_ig1')) {
           true
         );
         wp_localize_script('renewai-ig1-script', 'renewai_ig1_ajax', [
-          'ajax_url'            => admin_url('admin-ajax.php'),
-          'nonce'               => wp_create_nonce('renewai_ig1_generate_image'),
-          'no_log_file_text'    => esc_html__('No log file exists.', 'renewai-featured-image-generator'),
-          'cancel_text'         => esc_html__('Cancel', 'renewai-featured-image-generator'),
-          'change_api_key_text' => esc_html__('Change API Key', 'renewai-featured-image-generator'),
+          'ajax_url'              => admin_url('admin-ajax.php'),
+          'generate_prompt_nonce' => wp_create_nonce('renewai_ig1_generate_prompt'),
+          'generate_image_nonce'  => wp_create_nonce('renewai_ig1_generate_image'),
+          'delete_log_nonce'      => wp_create_nonce('renewai_ig1_delete_log'),
+          'no_log_file_text'      => esc_html__('No log file exists.', 'renewai-featured-image-generator'),
+          'cancel_text'           => esc_html__('Cancel', 'renewai-featured-image-generator'),
+          'change_api_key_text'   => esc_html__('Change API Key', 'renewai-featured-image-generator'),
         ]);
       }
     }
@@ -259,6 +261,9 @@ if (!function_exists('RenewAI\\FeaturedImageGenerator\\renewai_ig1')) {
    */
   function renewai_ig1_view_log()
   {
+    if (!isset($_REQUEST['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'renewai_ig1_view_log')) {
+      wp_die(esc_html__('Security check failed.', 'renewai-featured-image-generator'));
+    }
     if (!current_user_can('manage_options')) {
       wp_die(esc_html__('You do not have sufficient permissions to access this page.', 'renewai-featured-image-generator'));
     }
@@ -285,12 +290,15 @@ if (!function_exists('RenewAI\\FeaturedImageGenerator\\renewai_ig1')) {
    */
   function renewai_ig1_delete_log()
   {
-    if (!current_user_can('manage_options')) {
-      wp_send_json_error('Insufficient permissions');
+    // Verify nonce
+    if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'renewai_ig1_delete_log')) {
+      wp_send_json_error([
+        'message' => esc_html__('Security check failed.', 'renewai-featured-image-generator'),
+      ]);
       return;
     }
-    if (!check_ajax_referer('renewai_ig1_generate_image', 'nonce', false)) {
-      wp_send_json_error('Invalid nonce');
+    if (!current_user_can('manage_options')) {
+      wp_send_json_error('Insufficient permissions');
       return;
     }
     $log_file = RENEWAI_IG1_LOG_FILE;
