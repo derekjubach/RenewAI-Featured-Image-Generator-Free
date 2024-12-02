@@ -54,6 +54,14 @@ class APIKeys {
      * Register API key settings and sections.
      */
     public function register_settings() : void {
+        // Nonce verification
+        add_action( 'admin_init', function () {
+            if ( isset( $_GET['page'] ) && $_GET['page'] === 'renewai-ig1-api-keys' ) {
+                if ( isset( $_GET['settings-updated'] ) && (!isset( $_REQUEST['_wpnonce'] ) || !wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'renewai_ig1_api_keys-options' )) ) {
+                    wp_die( esc_html__( 'Security check failed. Please try again.', 'renewai-featured-image-generator' ) );
+                }
+            }
+        } );
         // Register OpenAI API key setting
         register_setting( 'renewai_ig1_api_keys', 'renewai_ig1_openai_api_key', [
             'sanitize_callback' => [$this, 'sanitize_api_key'],
@@ -144,7 +152,8 @@ class APIKeys {
      * Display admin notices for settings updates.
      */
     public function admin_notices() : void {
-        if ( isset( $_GET['settings-updated'] ) && isset( $_GET['page'] ) && $_GET['page'] === 'renewai-ig1-api-keys' ) {
+        // Verify nonce for GET parameters
+        if ( isset( $_GET['settings-updated'] ) && isset( $_GET['page'] ) && $_GET['page'] === 'renewai-ig1-api-keys' && isset( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'renewai_ig1_api_keys-options' ) ) {
             ?>
       <div class="notice notice-success is-dismissible">
         <p><?php 

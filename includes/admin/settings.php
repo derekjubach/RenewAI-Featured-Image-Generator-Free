@@ -300,37 +300,43 @@ class Settings {
      * Display admin notices for settings updates and log operations.
      */
     public function admin_notices() : void {
+        // Verify nonce for log operations
+        $valid_nonce = isset( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'renewai_ig1_log_operation' );
         $notices = [];
+        // Settings updated notice doesn't need nonce as it's handled by WordPress settings API
         if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] === 'true' ) {
             $notices[] = [
                 'type'    => 'success',
                 'message' => esc_html__( 'Settings saved successfully.', 'renewai-featured-image-generator' ),
             ];
         }
-        if ( isset( $_GET['log_deleted'] ) && $_GET['log_deleted'] === 'true' ) {
-            $notices[] = [
-                'type'    => 'success',
-                'message' => esc_html__( 'Log file deleted successfully. Uncheck debug mode and save settings.', 'renewai-featured-image-generator' ),
-            ];
-        }
-        if ( isset( $_GET['log_delete_failed'] ) && $_GET['log_delete_failed'] === 'true' ) {
-            $error_message = ( isset( $_GET['error'] ) ? sanitize_text_field( wp_unslash( $_GET['error'] ) ) : '' );
-            $message = esc_html__( 'Failed to delete log file. ', 'renewai-featured-image-generator' );
-            if ( $error_message === 'not_writable' ) {
-                $message .= esc_html__( 'The log file is not writable. Please check file permissions.', 'renewai-featured-image-generator' );
-            } else {
-                $message .= $error_message;
+        // Only process log-related notices if nonce is valid
+        if ( $valid_nonce ) {
+            if ( isset( $_GET['log_deleted'] ) && $_GET['log_deleted'] === 'true' ) {
+                $notices[] = [
+                    'type'    => 'success',
+                    'message' => esc_html__( 'Log file deleted successfully. Uncheck debug mode and save settings.', 'renewai-featured-image-generator' ),
+                ];
             }
-            $notices[] = [
-                'type'    => 'error',
-                'message' => $message,
-            ];
-        }
-        if ( isset( $_GET['log_not_found'] ) && $_GET['log_not_found'] === 'true' ) {
-            $notices[] = [
-                'type'    => 'warning',
-                'message' => esc_html__( 'Log file not found. It may have been already deleted.', 'renewai-featured-image-generator' ),
-            ];
+            if ( isset( $_GET['log_delete_failed'] ) && $_GET['log_delete_failed'] === 'true' ) {
+                $error_message = ( isset( $_GET['error'] ) ? sanitize_text_field( wp_unslash( $_GET['error'] ) ) : '' );
+                $message = esc_html__( 'Failed to delete log file. ', 'renewai-featured-image-generator' );
+                if ( $error_message === 'not_writable' ) {
+                    $message .= esc_html__( 'The log file is not writable. Please check file permissions.', 'renewai-featured-image-generator' );
+                } else {
+                    $message .= $error_message;
+                }
+                $notices[] = [
+                    'type'    => 'error',
+                    'message' => $message,
+                ];
+            }
+            if ( isset( $_GET['log_not_found'] ) && $_GET['log_not_found'] === 'true' ) {
+                $notices[] = [
+                    'type'    => 'warning',
+                    'message' => esc_html__( 'Log file not found. It may have been already deleted.', 'renewai-featured-image-generator' ),
+                ];
+            }
         }
         foreach ( $notices as $notice ) {
             printf( '<div class="notice notice-%1$s is-dismissible"><p>%2$s</p></div>', esc_attr( $notice['type'] ), esc_html( $notice['message'] ) );
@@ -460,7 +466,8 @@ class Settings {
     public function render_newsletter_field() : void {
         $current_user = wp_get_current_user();
         $user_email = $current_user->user_email;
-        // Add hidden field to ensure form processing
+        // Add hidden fields including nonce
+        wp_nonce_field( 'renewai_ig1_newsletter_action', 'renewai_ig1_newsletter_nonce' );
         echo '<input type="hidden" name="renewai_ig1_newsletter_submitted" value="1">';
         echo '<input type="hidden" name="renewai_ig1_newsletter_fname" value="' . esc_attr( $current_user->first_name ) . '">';
         echo '<input type="hidden" name="renewai_ig1_newsletter_lname" value="' . esc_attr( $current_user->last_name ) . '">';
@@ -509,6 +516,16 @@ class Settings {
     public function process_newsletter_settings( $value ) {
         // Check if form was submitted
         if ( !isset( $_POST['renewai_ig1_newsletter_submitted'] ) ) {
+            return $value;
+        }
+        // Verify nonce
+        if ( !isset( $_POST['renewai_ig1_newsletter_nonce'] ) || !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['renewai_ig1_newsletter_nonce'] ) ), 'renewai_ig1_newsletter_action' ) ) {
+            add_settings_error(
+                'renewai_ig1_settings',
+                'nonce_error',
+                esc_html__( 'Security check failed. Please try again.', 'renewai-featured-image-generator' ),
+                'error'
+            );
             return $value;
         }
         // Only process if this is the first interaction

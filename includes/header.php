@@ -10,7 +10,13 @@ if ( !defined( 'ABSPATH' ) ) {
  * 
  * @var string $current_page The current page slug from $_GET
  */
-$current_page = ( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' );
+// Verify nonce for page navigation
+$current_page = '';
+if ( isset( $_GET['page'] ) ) {
+    if ( isset( $_REQUEST['_wpnonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'renewai_ig1_page_navigation' ) ) {
+        $current_page = sanitize_text_field( wp_unslash( $_GET['page'] ) );
+    }
+}
 ?>
 
 <div class="renewai-ig1-header">
