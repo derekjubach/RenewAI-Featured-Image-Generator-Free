@@ -80,7 +80,10 @@ Yes, the plugin is compatible with WordPress language switchers.
 == Screenshots ==
 
 1. Settings page
-2. Featured image generation in action
+2. API keys page
+3. Help page
+4. Prompt generation in action
+5. Featured image generation in action
 
 == Terms of Service ==
 
