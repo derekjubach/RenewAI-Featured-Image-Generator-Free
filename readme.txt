@@ -2,8 +2,8 @@
 Contributors: djubach, fullscope, freemius
 Tags: featured image, ai, openai, flux, image generation, internationalization, translation-ready
 Requires at least: 5.0
-Tested up to: 6.7
-Stable tag: 2.0.3
+Tested up to: 6.8
+Stable tag: 2.0.4
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -106,6 +106,9 @@ PerpetuAI Consulting is not responsible for any misuse of the AI services or any
 
 == Changelog ==
 
+= 2.0.4 =
+* WordPress Version 6.8 Compatibility
+
 = 2.0.3 =
 * Updated Freemius SDK to the latest version
 
@@ -129,6 +132,6 @@ PerpetuAI Consulting is not responsible for any misuse of the AI services or any
 
 == Upgrade Notice ==
 
-= 2.0.3 =
-* Updated Freemius SDK to the latest version
+= 2.0.4 =
+* WordPress Version 6.8 Compatibility
 
