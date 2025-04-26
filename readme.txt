@@ -106,6 +106,9 @@ PerpetuAI Consulting is not responsible for any misuse of the AI services or any
 
 == Changelog ==
 
+= 2.1 =
+* Added Compatibility for custom post types that support featured images
+
 = 2.0.4 =
 * WordPress Version 6.8 Compatibility
 
@@ -132,6 +135,6 @@ PerpetuAI Consulting is not responsible for any misuse of the AI services or any
 
 == Upgrade Notice ==
 
-= 2.0.4 =
-* WordPress Version 6.8 Compatibility
+= 2.1 =
+* Added Compatibility for custom post types that support featured images
 

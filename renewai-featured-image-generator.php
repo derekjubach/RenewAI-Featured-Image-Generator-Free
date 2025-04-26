@@ -3,7 +3,7 @@
 /**
  * Plugin Name: RenewAI Featured Image Generator
  * Description: Generates featured images for posts using OpenAI and Flux API's.
- * Version: 2.0.4
+ * Version: 2.1
  * Text Domain: renewai-featured-image-generator
  * Author: Derek Jubach
  * Author URI:  https://github.com/derekjubach/RenewAI-Featured-Image-Creator-Free
