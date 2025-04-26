@@ -1,6 +1,6 @@
 === RenewAI Featured Image Generator ===
 Contributors: djubach, fullscope, freemius
-Tags: featured image, ai, openai, flux, image generation, internationalization, translation-ready
+Tags: featured image, ai, openai, flux, image generation
 Requires at least: 5.0
 Tested up to: 6.8
 Stable tag: 2.0.4
